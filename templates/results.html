@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results Detected Products</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3d1df;
+            padding: 70px;
+        }
+
+        h1 {
+            color: #2f2a36;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 28px; /* Adjust font size */
+            text-transform: capitalize; /* Convert text to uppercase */
+            letter-spacing: 1px; /* Increase letter spacing */
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Add subtle text shadow */
+            line-height: 1.4; /* Adjust line height */
+            font-style:'normal';
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .product-card p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Found relevant products on the basis of your search</h1>
+
+    {% if products %}
+        <div class="products-container">
+            {% for i in range(length) %}
+                <div class="product-card">
+                    <h2>Product Name: {{ products[i] }}</h2>
+                    <p><a href="{{ urls[i] }}"><img src="{{ urls[i] }}" alt="{{ products[i] }}"></a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3><br><br>Sorry, No matching products found. Try it again after some time.</h3>
+    {% endif %}
+
+</body>
+</html>
