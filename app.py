@@ -9,6 +9,9 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'tough-melody-426205-n0-85b29f2d2
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads' 
 
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
 csv_file = 'products.csv'
 df = pd.read_csv(csv_file)
 
